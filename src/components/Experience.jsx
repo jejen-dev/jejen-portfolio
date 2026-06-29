@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { GraduationCap, Briefcase, Code, Rocket, Truck, Coffee, Wrench } from "lucide-react";
+import { useLanguage } from "../i18n";
 
 const journey = [
     {
@@ -47,6 +48,13 @@ const journey = [
 ];
 
 export default function Experience() {
+    const { t } = useLanguage();
+    const translatedJourney = journey.map((item, index) => ({
+        ...item,
+        title: t.experience.items[index][0],
+        description: t.experience.items[index][1],
+    }));
+
     return (
         <section id="experience" className="mx-auto max-w-6xl px-6 py-28">
             <motion.div
@@ -55,15 +63,15 @@ export default function Experience() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
             >
-                <p className="font-mono text-xs tracking-[0.25em] text-black/25 dark:text-white/25 mb-4">TIMELINE</p>
-                <h2 className="section-title">My Journey</h2>
+                <p className="font-mono text-xs tracking-[0.25em] text-black/25 dark:text-white/25 mb-4">{t.experience.eyebrow}</p>
+                <h2 className="section-title">{t.experience.title}</h2>
                 <div className="section-divider" />
 
                 <div className="relative mt-2 space-y-4">
                     {/* VERTICAL LINE */}
                     <div className="absolute left-[19px] top-6 bottom-6 w-px bg-gradient-to-b from-black/10 dark:from-white/10 via-black/6 dark:via-white/6 to-transparent" />
 
-                    {journey.map((item, index) => {
+                    {translatedJourney.map((item, index) => {
                         const Icon = item.icon;
                         return (
                             <motion.div

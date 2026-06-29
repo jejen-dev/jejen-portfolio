@@ -32,7 +32,7 @@ export default function IntroAnimation({ onComplete }) {
                     style={{ pointerEvents: "none" }}
                 >
                     {/* CHARACTERS */}
-                    <div className="flex gap-1.5 md:gap-2">
+                    <div dir="ltr" className="flex gap-1.5 md:gap-2">
                         {CHARS.map((char, i) => (
                             <motion.span
                                 key={i}

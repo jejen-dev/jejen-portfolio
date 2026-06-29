@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import ProjectModal from "./ProjectModal";
+import { useLanguage } from "../i18n";
 
 const projects = [
     {
@@ -37,7 +38,12 @@ const projects = [
 ];
 
 export default function Projects() {
+    const { t } = useLanguage();
     const [selected, setSelected] = useState(null);
+    const translatedProjects = projects.map((project, index) => ({
+        ...project,
+        description: t.projects.descriptions[index],
+    }));
 
     return (
         <section id="projects" className="mx-auto max-w-6xl px-6 py-28">
@@ -47,13 +53,13 @@ export default function Projects() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
             >
-                <p className="font-mono text-xs tracking-[0.25em] text-black/25 dark:text-white/25 mb-4">WORK</p>
-                <h2 className="section-title">Projects</h2>
+                <p className="font-mono text-xs tracking-[0.25em] text-black/25 dark:text-white/25 mb-4">{t.projects.eyebrow}</p>
+                <h2 className="section-title">{t.projects.title}</h2>
                 <div className="section-divider" />
             </motion.div>
 
             <div className="grid gap-4 lg:grid-cols-3">
-                {projects.map((project, index) => (
+                {translatedProjects.map((project, index) => (
                     <motion.div
                         key={project.title}
                         initial={{ opacity: 0, y: 24 }}
@@ -94,7 +100,7 @@ export default function Projects() {
                         {/* FOOTER */}
                         <div className="mt-5 flex items-center justify-between border-t border-black/5 dark:border-white/5 pt-4">
                             <span className="text-xs text-black/25 dark:text-white/25 group-hover:text-black/50 dark:group-hover:text-white/50 transition">
-                                Click to view details
+                                {t.projects.click}
                             </span>
                             <div className="w-6 h-6 rounded-full border border-black/10 dark:border-white/10 flex items-center justify-center group-hover:border-black/30 dark:group-hover:border-white/30 group-hover:bg-black/10 dark:group-hover:bg-white/10 transition">
                                 <ArrowUpRight size={12} className="text-black/30 dark:text-white/30 group-hover:text-black/70 dark:group-hover:text-white/70 transition" />
@@ -114,6 +120,7 @@ export default function Projects() {
                 project={selected}
                 isOpen={!!selected}
                 onClose={() => setSelected(null)}
+                labels={t.projects}
             />
         </section>
     );

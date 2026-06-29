@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Send, Instagram } from "lucide-react";
 import ContactForm from "./ContactForm";
+import { useLanguage } from "../i18n";
 
 const contacts = [
     { title: "GitHub", icon: Github, href: "https://github.com/jejen-dev" },
@@ -11,6 +12,8 @@ const contacts = [
 ];
 
 export default function Contact() {
+    const { t } = useLanguage();
+
     return (
         <section id="contact" className="mx-auto max-w-6xl px-6 py-28">
             <motion.div
@@ -19,10 +22,10 @@ export default function Contact() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
             >
-                <p className="font-mono text-xs tracking-[0.25em] text-black/25 dark:text-white/25 mb-4 text-center">GET IN TOUCH</p>
-                <h2 className="section-title text-center">Let's Work Together</h2>
+                <p className="font-mono text-xs tracking-[0.25em] text-black/25 dark:text-white/25 mb-4 text-center">{t.contact.eyebrow}</p>
+                <h2 className="section-title text-center">{t.contact.title}</h2>
                 <p className="mt-4 text-center text-sm text-black/35 dark:text-white/35 max-w-md mx-auto leading-relaxed">
-                    Have a project in mind or just want to say hello? I'm always open to new opportunities.
+                    {t.contact.description}
                 </p>
                 <div className="section-divider mx-auto" />
 

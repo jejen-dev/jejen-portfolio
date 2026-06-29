@@ -11,12 +11,13 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import IntroAnimation from "./components/IntroAnimation";
 import Terminal from "./components/Terminal";
+import { LanguageProvider } from "./i18n";
 
 function App() {
     const [showIntro, setShowIntro] = useState(true);
 
     return (
-        <>
+        <LanguageProvider>
             <SEO />
 
             {showIntro && (
@@ -37,7 +38,7 @@ function App() {
 
             <Footer />
             <Terminal />
-        </>
+        </LanguageProvider>
     );
 }
 

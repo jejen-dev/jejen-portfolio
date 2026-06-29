@@ -2,16 +2,19 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { Send, Loader2, CheckCircle, AlertCircle } from "lucide-react";
-
-const fields = [
-    { name: "name", label: "Name", type: "text", placeholder: "Your full name", required: true },
-    { name: "email", label: "Email", type: "email", placeholder: "you@example.com", required: true },
-    { name: "subject", label: "Subject", type: "text", placeholder: "What's this about?", required: false },
-];
+import { useLanguage } from "../i18n";
 
 export default function ContactForm() {
+    const { t } = useLanguage();
     const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
     const [status, setStatus] = useState("idle");
+    const fields = t.contact.fields.map(([name, label, placeholder]) => ({
+        name,
+        label,
+        placeholder,
+        type: name === "email" ? "email" : "text",
+        required: name !== "subject",
+    }));
 
     const handleChange = (e) => {
         setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -29,7 +32,7 @@ export default function ContactForm() {
                 {
                     name: formData.name,
                     email: formData.email,
-                    subject: formData.subject || "Message from Portfolio",
+                    subject: formData.subject || t.contact.fallbackSubject,
                     message: formData.message,
                 },
                 import.meta.env.VITE_EMAILJS_PUBLIC_KEY
@@ -63,7 +66,7 @@ export default function ContactForm() {
                     className="mb-6 flex items-center gap-3 rounded-2xl border border-green-500/20 bg-green-500/10 dark:bg-green-500/20 px-5 py-4 text-sm text-green-700 dark:text-green-300"
                 >
                     <CheckCircle size={16} className="text-green-500 flex-shrink-0" />
-                    Message sent! I'll get back to you soon.
+                    {t.contact.success}
                 </motion.div>
             )}
 
@@ -75,7 +78,7 @@ export default function ContactForm() {
                     className="mb-6 flex items-center gap-3 rounded-2xl border border-red-500/20 bg-red-500/10 dark:bg-red-500/20 px-5 py-4 text-sm text-red-700 dark:text-red-300"
                 >
                     <AlertCircle size={16} className="text-red-500 flex-shrink-0" />
-                    Failed to send. Try again or email directly.
+                    {t.contact.error}
                 </motion.div>
             )}
 
@@ -102,14 +105,14 @@ export default function ContactForm() {
             {/* MESSAGE */}
             <div className="mt-4">
                 <label className="mb-1.5 block font-mono text-[10px] tracking-[0.2em] text-black/30 dark:text-white/30">
-                    MESSAGE *
+                    {t.contact.message.toUpperCase()} *
                 </label>
                 <textarea
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
                     rows={5}
-                    placeholder="What's on your mind?"
+                    placeholder={t.contact.messagePlaceholder}
                     required
                     className="w-full rounded-xl border border-black/8 dark:border-white/8 bg-black/5 dark:bg-white/5 px-4 py-3 text-sm text-black/90 dark:text-white/90 placeholder-black/20 dark:placeholder-white/20 transition focus:border-black/25 dark:focus:border-white/25 focus:bg-black/10 dark:focus:bg-white/10 focus:outline-none resize-none"
                 />
@@ -125,11 +128,11 @@ export default function ContactForm() {
             >
                 {status === "loading" ? (
                     <>
-                        <Loader2 size={15} className="animate-spin" /> Sending...
+                        <Loader2 size={15} className="animate-spin" /> {t.contact.sending}
                     </>
                 ) : (
                     <>
-                        Send Message <Send size={14} />
+                        {t.contact.send} <Send size={14} />
                     </>
                 )}
             </motion.button>

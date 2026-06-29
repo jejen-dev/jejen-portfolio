@@ -1,18 +1,11 @@
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
-import { Github, Menu, X } from "lucide-react";
+import { Github, Languages, Menu, X } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import ThemeToggle from "./ThemeToggle";
-
-const navLinks = [
-    { href: "#about", label: "About" },
-    { href: "#experience", label: "Journey" },
-    { href: "#skills", label: "Skills" },
-    { href: "#projects", label: "Projects" },
-    { href: "#certificate", label: "Certificate" },
-    { href: "#contact", label: "Contact" },
-];
+import { useLanguage } from "../i18n";
 
 export default function Navbar() {
+    const { language, setLanguage, languages, t } = useLanguage();
     const { scrollYProgress } = useScroll();
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
@@ -53,6 +46,34 @@ export default function Navbar() {
         };
     }, [menuOpen]);
 
+    const navLinks = [
+        { href: "#about", label: t.nav.about },
+        { href: "#experience", label: t.nav.journey },
+        { href: "#skills", label: t.nav.skills },
+        { href: "#projects", label: t.nav.projects },
+        { href: "#certificate", label: t.nav.certificate },
+        { href: "#contact", label: t.nav.contact },
+    ];
+
+    const languageSelect = (
+        <label className="relative flex items-center gap-1.5 rounded-full border border-black/10 dark:border-white/10 bg-black/[0.03] dark:bg-white/[0.03] px-3 py-2 text-xs text-black/60 dark:text-white/60">
+            <Languages size={14} />
+            <span className="sr-only">{t.nav.language}</span>
+            <select
+                value={language}
+                onChange={(e) => setLanguage(e.target.value)}
+                className="bg-transparent text-xs font-medium outline-none"
+                aria-label={t.nav.language}
+            >
+                {languages.map((item) => (
+                    <option key={item.code} value={item.code}>
+                        {item.short}
+                    </option>
+                ))}
+            </select>
+        </label>
+    );
+
     return (
         <>
             <audio ref={audioRef} src="/consume.mp3" preload="auto" />
@@ -78,6 +99,7 @@ export default function Navbar() {
                     {/* LOGO */}
                     <a
                         href="/"
+                        dir="ltr"
                         className="text-sm font-black tracking-[0.3em] text-black dark:text-white hover:text-black/80 dark:hover:text-white/80 transition-colors"
                     >
                         JEJEN
@@ -101,6 +123,8 @@ export default function Navbar() {
                         {/* THEME TOGGLE */}
                         <ThemeToggle />
 
+                        <div className="hidden md:block">{languageSelect}</div>
+
                         {/* MUSIC PLAYER */}
                         <div className="relative hidden md:block">
                             <motion.button
@@ -114,6 +138,7 @@ export default function Navbar() {
                                         : "border-black/10 dark:border-white/10 bg-white/5 dark:bg-white/5 hover:border-black/30 dark:hover:border-white/30 hover:bg-black/10 dark:hover:bg-white/10"
                                     }`}
                                 title={isPlaying ? "Pause music" : "Play music"}
+                                aria-label={isPlaying ? t.nav.pause : t.nav.play}
                             >
                                 <motion.img
                                     src="/consume.png"
@@ -141,7 +166,7 @@ export default function Navbar() {
                                         transition={{ duration: 0.15 }}
                                         className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-black/80 px-2 py-1 text-[10px] text-white/70"
                                     >
-                                        {isPlaying ? "Pause" : "Play"} music
+                                        {isPlaying ? t.nav.pause : t.nav.play} {t.nav.music}
                                     </motion.div>
                                 )}
                             </AnimatePresence>
@@ -206,9 +231,14 @@ export default function Navbar() {
                                     </a>
                                 ))}
 
+                                <div className="flex items-center justify-between rounded-xl border border-black/10 dark:border-white/10 px-4 py-3">
+                                    <span className="text-sm text-black/60 dark:text-white/60">{t.nav.language}</span>
+                                    {languageSelect}
+                                </div>
+
                                 {/* MUSIC PLAYER MOBILE */}
                                 <div className="flex items-center justify-between rounded-xl border border-black/10 dark:border-white/10 px-4 py-3">
-                                    <span className="text-sm text-black/60 dark:text-white/60">🎵 Music</span>
+                                    <span className="text-sm text-black/60 dark:text-white/60">{t.nav.music}</span>
                                     <button
                                         onClick={togglePlay}
                                         className={`flex items-center gap-2 rounded-full p-1.5 transition ${isPlaying
@@ -216,6 +246,7 @@ export default function Navbar() {
                                                 : "bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10"
                                             }`}
                                         style={{ pointerEvents: "auto", cursor: "pointer" }}
+                                        aria-label={isPlaying ? t.nav.pause : t.nav.play}
                                     >
                                         <motion.img
                                             src="/consume.png"

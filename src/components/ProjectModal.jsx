@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowUpRight, Github } from "lucide-react";
 import { useEffect } from "react";
 
-export default function ProjectModal({ project, isOpen, onClose }) {
+export default function ProjectModal({ project, isOpen, onClose, labels }) {
     useEffect(() => {
         const handler = (e) => {
             if (e.key === "Escape") onClose();
@@ -40,7 +40,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                         {/* HEADER */}
                         <div className="flex items-center justify-between px-8 pt-8 pb-0">
                             <div>
-                                <p className="font-mono text-[10px] tracking-[0.25em] text-black/40 dark:text-white/40 mb-1">PROJECT</p>
+                                <p className="font-mono text-[10px] tracking-[0.25em] text-black/40 dark:text-white/40 mb-1">{labels.modalEyebrow}</p>
                                 <h2 className="text-2xl font-bold text-black dark:text-white tracking-tight">
                                     {project.title}
                                 </h2>
@@ -63,7 +63,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                                     className="w-full h-full object-cover"
                                 />
                             ) : (
-                                <p className="text-xs text-black/30 dark:text-white/30 font-mono">Screenshot coming soon</p>
+                                <p className="text-xs text-black/30 dark:text-white/30 font-mono">{labels.screenshot}</p>
                             )}
                         </div>
 
@@ -91,7 +91,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                                     rel="noreferrer"
                                     className="btn-primary inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm"
                                 >
-                                    Live Demo <ArrowUpRight size={15} />
+                                    {labels.liveDemo} <ArrowUpRight size={15} />
                                 </a>
                                 <a
                                     href={project.github}
@@ -99,7 +99,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                                     rel="noreferrer"
                                     className="inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm border border-black/20 dark:border-white/20 bg-black/5 dark:bg-white/5 text-black/80 dark:text-white/80 hover:bg-black/10 dark:hover:bg-white/10 hover:text-black dark:hover:text-white transition"
                                 >
-                                    <Github size={15} /> Source Code
+                                    <Github size={15} /> {labels.sourceCode}
                                 </a>
                             </div>
                         </div>

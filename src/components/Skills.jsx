@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Layout, GitBranch, Brush, Terminal } from "lucide-react";
+import { useLanguage } from "../i18n";
 
 const skillCategories = [
     {
@@ -25,6 +26,12 @@ const skillCategories = [
 ];
 
 export default function Skills() {
+    const { t } = useLanguage();
+    const translatedCategories = skillCategories.map((category, index) => ({
+        ...category,
+        name: t.skills.categories[index],
+    }));
+
     return (
         <section id="skills" className="mx-auto max-w-6xl px-6 py-28">
             <motion.div
@@ -33,12 +40,12 @@ export default function Skills() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
             >
-                <p className="font-mono text-xs tracking-[0.25em] text-black/25 dark:text-white/25 mb-4">EXPERTISE</p>
-                <h2 className="section-title">Skills</h2>
+                <p className="font-mono text-xs tracking-[0.25em] text-black/25 dark:text-white/25 mb-4">{t.skills.eyebrow}</p>
+                <h2 className="section-title">{t.skills.title}</h2>
                 <div className="section-divider" />
 
                 <div className="grid gap-4 md:grid-cols-2">
-                    {skillCategories.map((cat, index) => {
+                    {translatedCategories.map((cat, index) => {
                         const Icon = cat.icon;
                         return (
                             <motion.div
