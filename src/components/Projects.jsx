@@ -47,7 +47,7 @@ export default function Projects() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
             >
-                <p className="font-mono text-xs tracking-[0.25em] text-white/25 mb-4">WORK</p>
+                <p className="font-mono text-xs tracking-[0.25em] text-black/25 dark:text-white/25 mb-4">WORK</p>
                 <h2 className="section-title">Projects</h2>
                 <div className="section-divider" />
             </motion.div>
@@ -62,20 +62,20 @@ export default function Projects() {
                         transition={{ delay: index * 0.08, duration: 0.45 }}
                         whileHover={{ y: -6 }}
                         onClick={() => setSelected(project)}
-                        className="glass-card group relative flex flex-col rounded-2xl p-6 border border-white/5 hover:border-white/15 transition-all duration-300 cursor-pointer overflow-hidden"
+                        className="glass-card group relative flex flex-col rounded-2xl p-6 border border-black/5 dark:border-white/5 hover:border-black/15 dark:hover:border-white/15 transition-all duration-300 cursor-pointer overflow-hidden"
                     >
                         {/* YEAR BADGE */}
-                        <span className="absolute top-5 right-5 font-mono text-[10px] text-white/20">
+                        <span className="absolute top-5 right-5 font-mono text-[10px] text-black/20 dark:text-white/20">
                             {project.year}
                         </span>
 
                         {/* TITLE */}
-                        <h3 className="text-xl font-bold text-white/85 group-hover:text-white transition pr-12">
+                        <h3 className="text-xl font-bold text-black/85 dark:text-white/85 group-hover:text-black dark:group-hover:text-white transition pr-12">
                             {project.title}
                         </h3>
 
                         {/* DESCRIPTION */}
-                        <p className="mt-3 flex-1 text-sm leading-relaxed text-white/40 group-hover:text-white/60 transition">
+                        <p className="mt-3 flex-1 text-sm leading-relaxed text-black/40 dark:text-white/40 group-hover:text-black/60 dark:group-hover:text-white/60 transition">
                             {project.description}
                         </p>
 
@@ -84,7 +84,7 @@ export default function Projects() {
                             {project.tech.map((t) => (
                                 <span
                                     key={t}
-                                    className="rounded-full border border-white/7 bg-white/[0.03] px-2.5 py-1 text-[10px] text-white/45"
+                                    className="rounded-full border border-black/7 dark:border-white/7 bg-black/5 dark:bg-white/5 px-2.5 py-1 text-[10px] text-black/45 dark:text-white/45"
                                 >
                                     {t}
                                 </span>
@@ -92,18 +92,19 @@ export default function Projects() {
                         </div>
 
                         {/* FOOTER */}
-                        <div className="mt-5 flex items-center justify-between border-t border-white/5 pt-4">
-                            <span className="text-xs text-white/25 group-hover:text-white/50 transition">
+                        <div className="mt-5 flex items-center justify-between border-t border-black/5 dark:border-white/5 pt-4">
+                            <span className="text-xs text-black/25 dark:text-white/25 group-hover:text-black/50 dark:group-hover:text-white/50 transition">
                                 Click to view details
                             </span>
-                            <div className="w-6 h-6 rounded-full border border-white/10 flex items-center justify-center group-hover:border-white/30 group-hover:bg-white/5 transition">
-                                <ArrowUpRight size={12} className="text-white/30 group-hover:text-white/70 transition" />
+                            <div className="w-6 h-6 rounded-full border border-black/10 dark:border-white/10 flex items-center justify-center group-hover:border-black/30 dark:group-hover:border-white/30 group-hover:bg-black/10 dark:group-hover:bg-white/10 transition">
+                                <ArrowUpRight size={12} className="text-black/30 dark:text-white/30 group-hover:text-black/70 dark:group-hover:text-white/70 transition" />
                             </div>
                         </div>
 
                         {/* HOVER GLOW */}
-                        <div className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                            style={{ background: "radial-gradient(circle at 50% 0%, rgba(255,255,255,0.03), transparent 70%)" }}
+                        <div
+                            className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                            style={{ background: "radial-gradient(circle at 50% 0%, rgba(0,0,0,0.03), transparent 70%)" }}
                         />
                     </motion.div>
                 ))}

@@ -5,7 +5,6 @@ export default function MusicPlayer() {
     const [isPlaying, setIsPlaying] = useState(false);
     const audioRef = useRef(null);
 
-    // ===== TOGGLE PLAY/PAUSE =====
     const togglePlay = () => {
         if (isPlaying) {
             audioRef.current.pause();
@@ -15,7 +14,6 @@ export default function MusicPlayer() {
         setIsPlaying(!isPlaying);
     };
 
-    // ===== AUTO-STOP SAAT MUSIK HABIS =====
     useEffect(() => {
         const audio = audioRef.current;
         if (!audio) return;
@@ -32,18 +30,15 @@ export default function MusicPlayer() {
 
     return (
         <>
-            {/* ELEMEN AUDIO — TERSEMBUNYI */}
             <audio ref={audioRef} src="/consume.mp3" preload="auto" />
 
-            {/* TOMBOL MUSIK — DI NAVBAR */}
             <motion.button
                 onClick={togglePlay}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="relative flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 backdrop-blur-sm transition-all hover:border-white/30 hover:bg-white/10"
+                className="relative flex items-center gap-2 rounded-full border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-3 py-2 backdrop-blur-sm transition-all hover:border-black/30 dark:hover:border-white/30 hover:bg-black/10 dark:hover:bg-white/10"
                 title={isPlaying ? "Pause music" : "Play music"}
             >
-                {/* PIRINGAN BERPUTAR */}
                 <motion.img
                     src="/consume.png"
                     alt="Music player"
@@ -56,8 +51,7 @@ export default function MusicPlayer() {
                     }}
                 />
 
-                {/* INDIKATOR PLAY/PAUSE */}
-                <span className="text-xs text-white/60">
+                <span className="text-xs text-black/60 dark:text-white/60">
                     {isPlaying ? "⏸" : "▶"}
                 </span>
             </motion.button>

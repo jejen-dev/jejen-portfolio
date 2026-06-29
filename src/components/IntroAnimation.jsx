@@ -28,7 +28,7 @@ export default function IntroAnimation({ onComplete }) {
                     initial={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.4 }}
-                    className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#060606]"
+                    className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white dark:bg-[#060606]"
                     style={{ pointerEvents: "none" }}
                 >
                     {/* CHARACTERS */}
@@ -41,8 +41,8 @@ export default function IntroAnimation({ onComplete }) {
                                     phase === "enter"
                                         ? { y: 0, opacity: 1 }
                                         : phase === "exit"
-                                        ? { y: -60, opacity: 0, scale: 0.8 }
-                                        : { y: 0, opacity: 1 }
+                                            ? { y: -60, opacity: 0, scale: 0.8 }
+                                            : { y: 0, opacity: 1 }
                                 }
                                 transition={{
                                     delay: phase === "enter" ? i * 0.08 : i * 0.04,
@@ -51,8 +51,8 @@ export default function IntroAnimation({ onComplete }) {
                                     stiffness: 280,
                                     damping: 22,
                                 }}
-                                className="inline-block text-[5rem] md:text-[7rem] lg:text-[9rem] font-black tracking-[0.05em] text-white"
-                                style={{ textShadow: "0 0 80px rgba(255,255,255,0.1)" }}
+                                className="inline-block text-[5rem] md:text-[7rem] lg:text-[9rem] font-black tracking-[0.05em] text-black dark:text-white"
+                                style={{ textShadow: "0 0 80px rgba(0,0,0,0.05)" }}
                             >
                                 {char}
                             </motion.span>
@@ -66,11 +66,11 @@ export default function IntroAnimation({ onComplete }) {
                             phase === "enter"
                                 ? { opacity: 0 }
                                 : phase === "exit"
-                                ? { opacity: 0 }
-                                : { opacity: 1, y: 0 }
+                                    ? { opacity: 0 }
+                                    : { opacity: 1, y: 0 }
                         }
                         transition={{ duration: 0.4 }}
-                        className="mt-4 font-mono text-xs tracking-[0.35em] text-white/25"
+                        className="mt-4 font-mono text-xs tracking-[0.35em] text-black/25 dark:text-white/25"
                     >
                         FRONT-END DEVELOPER
                     </motion.p>
@@ -79,7 +79,7 @@ export default function IntroAnimation({ onComplete }) {
                     <div
                         className="absolute inset-0 pointer-events-none"
                         style={{
-                            background: "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(255,255,255,0.04), transparent 70%)",
+                            background: "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0,0,0,0.03), transparent 70%)",
                         }}
                     />
                 </motion.div>

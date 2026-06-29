@@ -19,9 +19,9 @@ export default function Contact() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
             >
-                <p className="font-mono text-xs tracking-[0.25em] text-white/25 mb-4 text-center">GET IN TOUCH</p>
+                <p className="font-mono text-xs tracking-[0.25em] text-black/25 dark:text-white/25 mb-4 text-center">GET IN TOUCH</p>
                 <h2 className="section-title text-center">Let's Work Together</h2>
-                <p className="mt-4 text-center text-sm text-white/35 max-w-md mx-auto leading-relaxed">
+                <p className="mt-4 text-center text-sm text-black/35 dark:text-white/35 max-w-md mx-auto leading-relaxed">
                     Have a project in mind or just want to say hello? I'm always open to new opportunities.
                 </p>
                 <div className="section-divider mx-auto" />
@@ -46,10 +46,10 @@ export default function Contact() {
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.06, duration: 0.4 }}
                                 whileHover={{ y: -3 }}
-                                className="glass-card flex items-center gap-2.5 rounded-2xl px-5 py-3 border border-white/5 hover:border-white/15 transition-all duration-200"
+                                className="glass-card flex items-center gap-2.5 rounded-2xl px-5 py-3 border border-black/5 dark:border-white/5 hover:border-black/15 dark:hover:border-white/15 transition-all duration-200"
                             >
-                                <Icon size={15} className="text-white/45" />
-                                <span className="text-sm text-white/60 hover:text-white/85 transition">
+                                <Icon size={15} className="text-black/45 dark:text-white/45" />
+                                <span className="text-sm text-black/60 dark:text-white/60 hover:text-black/85 dark:hover:text-white/85 transition">
                                     {contact.title}
                                 </span>
                             </motion.a>

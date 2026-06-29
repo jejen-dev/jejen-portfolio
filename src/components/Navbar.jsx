@@ -1,6 +1,7 @@
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { Github, Menu, X } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
     { href: "#about", label: "About" },
@@ -16,17 +17,14 @@ export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
 
-    // ===== MUSIC PLAYER STATE =====
     const [isPlaying, setIsPlaying] = useState(false);
     const [showTooltip, setShowTooltip] = useState(false);
     const audioRef = useRef(null);
 
-    // ===== SCROLL EFFECT =====
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
         setScrolled(latest > 0.01);
     });
 
-    // ===== TOGGLE PLAY/PAUSE =====
     const togglePlay = () => {
         if (isPlaying) {
             audioRef.current.pause();
@@ -36,22 +34,14 @@ export default function Navbar() {
         setIsPlaying(!isPlaying);
     };
 
-    // ===== AUTO-STOP SAAT MUSIK HABIS =====
     useEffect(() => {
         const audio = audioRef.current;
         if (!audio) return;
-
-        const handleEnded = () => {
-            setIsPlaying(false);
-        };
-
+        const handleEnded = () => setIsPlaying(false);
         audio.addEventListener("ended", handleEnded);
-        return () => {
-            audio.removeEventListener("ended", handleEnded);
-        };
+        return () => audio.removeEventListener("ended", handleEnded);
     }, []);
 
-    // ===== LOCK BODY SCROLL SAAT MENU OPEN =====
     useEffect(() => {
         if (menuOpen) {
             document.body.style.overflow = "hidden";
@@ -65,10 +55,8 @@ export default function Navbar() {
 
     return (
         <>
-            {/* ===== ELEMEN AUDIO (Tersembunyi) ===== */}
             <audio ref={audioRef} src="/consume.mp3" preload="auto" />
 
-            {/* ===== SCROLL PROGRESS BAR ===== */}
             <motion.div
                 className="fixed top-0 left-0 right-0 z-[60] h-px origin-left"
                 style={{
@@ -77,21 +65,20 @@ export default function Navbar() {
                 }}
             />
 
-            {/* ===== NAVBAR ===== */}
             <motion.nav
                 initial={{ y: -80, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
                 className={`fixed top-0 z-50 w-full transition-all duration-500 ${scrolled
-                    ? "border-b border-white/8 bg-[#060606]/80 backdrop-blur-2xl"
-                    : "bg-transparent"
+                        ? "border-b border-black/8 dark:border-white/8 bg-white/80 dark:bg-[#060606]/80 backdrop-blur-2xl"
+                        : "bg-transparent"
                     }`}
             >
                 <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
                     {/* LOGO */}
                     <a
                         href="/"
-                        className="text-sm font-black tracking-[0.3em] text-white hover:text-white/80 transition-colors"
+                        className="text-sm font-black tracking-[0.3em] text-black dark:text-white hover:text-black/80 dark:hover:text-white/80 transition-colors"
                     >
                         JEJEN
                     </a>
@@ -102,7 +89,7 @@ export default function Navbar() {
                             <a
                                 key={link.href}
                                 href={link.href}
-                                className="rounded-full px-4 py-2 text-sm text-white/45 transition-all duration-200 hover:bg-white/5 hover:text-white"
+                                className="rounded-full px-4 py-2 text-sm text-black/45 dark:text-white/45 transition-all duration-200 hover:bg-black/10 dark:hover:bg-white/10 hover:text-black dark:hover:text-white"
                             >
                                 {link.label}
                             </a>
@@ -111,7 +98,10 @@ export default function Navbar() {
 
                     {/* ===== RIGHT SIDE ===== */}
                     <div className="flex items-center gap-3">
-                        {/* ===== MUSIC PLAYER — KLIK PIRINGAN ===== */}
+                        {/* THEME TOGGLE */}
+                        <ThemeToggle />
+
+                        {/* MUSIC PLAYER */}
                         <div className="relative hidden md:block">
                             <motion.button
                                 onClick={togglePlay}
@@ -120,8 +110,8 @@ export default function Navbar() {
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.85 }}
                                 className={`relative flex items-center justify-center rounded-full border p-2 backdrop-blur-sm transition-all ${isPlaying
-                                    ? "border-white/30 bg-white/10"
-                                    : "border-white/10 bg-white/5 hover:border-white/30 hover:bg-white/10"
+                                        ? "border-black/30 dark:border-white/30 bg-black/10 dark:bg-white/10"
+                                        : "border-black/10 dark:border-white/10 bg-white/5 dark:bg-white/5 hover:border-black/30 dark:hover:border-white/30 hover:bg-black/10 dark:hover:bg-white/10"
                                     }`}
                                 title={isPlaying ? "Pause music" : "Play music"}
                             >
@@ -136,9 +126,8 @@ export default function Navbar() {
                                         repeat: isPlaying ? Infinity : 0,
                                     }}
                                 />
-
                                 <span
-                                    className={`absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border border-[#060606] ${isPlaying ? "bg-emerald-400 animate-pulse" : "bg-white/20"
+                                    className={`absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border border-[#060606] ${isPlaying ? "bg-emerald-400 animate-pulse" : "bg-black/20 dark:bg-white/20"
                                         }`}
                                 />
                             </motion.button>
@@ -158,14 +147,14 @@ export default function Navbar() {
                             </AnimatePresence>
                         </div>
 
-                        {/* ===== GITHUB BUTTON ===== */}
+                        {/* GITHUB BUTTON */}
                         <motion.a
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.97 }}
                             href="https://github.com/jejen-dev"
                             target="_blank"
                             rel="noreferrer"
-                            className="hidden md:flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/70 transition-all hover:border-white/25 hover:bg-white/[0.07] hover:text-white"
+                            className="hidden md:flex items-center gap-2 rounded-full border border-black/10 dark:border-white/10 bg-black/[0.03] dark:bg-white/[0.03] px-4 py-2 text-sm text-black/70 dark:text-white/70 transition-all hover:border-black/25 dark:hover:border-white/25 hover:bg-black/10 dark:hover:bg-white/10 hover:text-black dark:hover:text-white"
                         >
                             <Github size={15} />
                             GitHub
@@ -174,7 +163,7 @@ export default function Navbar() {
                         {/* MOBILE MENU BUTTON */}
                         <button
                             onClick={() => setMenuOpen(!menuOpen)}
-                            className="flex md:hidden p-2 text-white/60 hover:text-white transition relative z-[100]"
+                            className="flex md:hidden p-2 text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white transition relative z-[100]"
                             aria-label="Toggle menu"
                         >
                             {menuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -183,11 +172,10 @@ export default function Navbar() {
                 </div>
             </motion.nav>
 
-            {/* ===== MOBILE MENU OVERLAY — DIPISAHKAN DARI NAVBAR ===== */}
+            {/* ===== MOBILE MENU OVERLAY ===== */}
             <AnimatePresence>
                 {menuOpen && (
                     <>
-                        {/* OVERLAY GELAP — TUTUP SAAT KLIK DI LUAR */}
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -197,16 +185,13 @@ export default function Navbar() {
                             onClick={() => setMenuOpen(false)}
                         />
 
-                        {/* MENU KONTEN */}
                         <motion.div
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.25, ease: "easeInOut" }}
-                            className="fixed top-[72px] left-0 right-0 z-[95] border-t border-white/5 bg-[#060606]/95 backdrop-blur-2xl md:hidden"
-                            style={{
-                                pointerEvents: "auto", // ← PASTIKAN BISA DIKLIK
-                            }}
+                            className="fixed top-[72px] left-0 right-0 z-[95] border-t border-black/5 dark:border-white/5 bg-white/95 dark:bg-[#060606]/95 backdrop-blur-2xl md:hidden"
+                            style={{ pointerEvents: "auto" }}
                         >
                             <div className="flex flex-col gap-1 px-6 py-4">
                                 {navLinks.map((link) => (
@@ -214,29 +199,23 @@ export default function Navbar() {
                                         key={link.href}
                                         href={link.href}
                                         onClick={() => setMenuOpen(false)}
-                                        className="rounded-xl px-4 py-3 text-sm text-white/60 hover:bg-white/5 hover:text-white transition"
-                                        style={{
-                                            pointerEvents: "auto", // ← PASTIKAN BISA DIKLIK
-                                            cursor: "pointer",
-                                        }}
+                                        className="rounded-xl px-4 py-3 text-sm text-black/60 dark:text-white/60 hover:bg-black/10 dark:hover:bg-white/10 hover:text-black dark:hover:text-white transition"
+                                        style={{ pointerEvents: "auto", cursor: "pointer" }}
                                     >
                                         {link.label}
                                     </a>
                                 ))}
 
-                                {/* ===== MUSIC PLAYER MOBILE ===== */}
-                                <div className="flex items-center justify-between rounded-xl border border-white/10 px-4 py-3">
-                                    <span className="text-sm text-white/60">🎵 Music</span>
+                                {/* MUSIC PLAYER MOBILE */}
+                                <div className="flex items-center justify-between rounded-xl border border-black/10 dark:border-white/10 px-4 py-3">
+                                    <span className="text-sm text-black/60 dark:text-white/60">🎵 Music</span>
                                     <button
                                         onClick={togglePlay}
                                         className={`flex items-center gap-2 rounded-full p-1.5 transition ${isPlaying
-                                            ? "bg-white/10"
-                                            : "bg-white/5 hover:bg-white/10"
+                                                ? "bg-black/10 dark:bg-white/10"
+                                                : "bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10"
                                             }`}
-                                        style={{
-                                            pointerEvents: "auto", // ← PASTIKAN BISA DIKLIK
-                                            cursor: "pointer",
-                                        }}
+                                        style={{ pointerEvents: "auto", cursor: "pointer" }}
                                     >
                                         <motion.img
                                             src="/consume.png"
@@ -252,17 +231,14 @@ export default function Navbar() {
                                     </button>
                                 </div>
 
-                                {/* ===== GITHUB MOBILE ===== */}
+                                {/* GITHUB MOBILE */}
                                 <a
                                     href="https://github.com/jejen-dev"
                                     target="_blank"
                                     rel="noreferrer"
                                     onClick={() => setMenuOpen(false)}
-                                    className="mt-1 flex items-center gap-2 rounded-xl border border-white/10 px-4 py-3 text-sm text-white/60 hover:text-white transition"
-                                    style={{
-                                        pointerEvents: "auto", // ← PASTIKAN BISA DIKLIK
-                                        cursor: "pointer",
-                                    }}
+                                    className="mt-1 flex items-center gap-2 rounded-xl border border-black/10 dark:border-white/10 px-4 py-3 text-sm text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white transition"
+                                    style={{ pointerEvents: "auto", cursor: "pointer" }}
                                 >
                                     <Github size={15} /> GitHub
                                 </a>

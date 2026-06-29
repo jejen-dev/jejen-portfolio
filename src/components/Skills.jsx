@@ -33,7 +33,7 @@ export default function Skills() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
             >
-                <p className="font-mono text-xs tracking-[0.25em] text-white/25 mb-4">EXPERTISE</p>
+                <p className="font-mono text-xs tracking-[0.25em] text-black/25 dark:text-white/25 mb-4">EXPERTISE</p>
                 <h2 className="section-title">Skills</h2>
                 <div className="section-divider" />
 
@@ -48,14 +48,14 @@ export default function Skills() {
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.08, duration: 0.4 }}
                                 whileHover={{ y: -4 }}
-                                className="glass-card rounded-2xl p-6 border border-white/5 hover:border-white/12 transition-all duration-300 group"
+                                className="glass-card rounded-2xl p-6 border border-black/5 dark:border-white/5 hover:border-black/15 dark:hover:border-white/15 transition-all duration-300 group"
                             >
                                 {/* HEADER */}
                                 <div className="flex items-center gap-3 mb-5">
-                                    <div className="w-8 h-8 rounded-xl bg-white/[0.04] border border-white/8 flex items-center justify-center group-hover:border-white/15 transition">
-                                        <Icon size={15} className="text-white/45" />
+                                    <div className="w-8 h-8 rounded-xl bg-black/5 dark:bg-white/5 border border-black/8 dark:border-white/8 flex items-center justify-center group-hover:border-black/15 dark:group-hover:border-white/15 transition">
+                                        <Icon size={15} className="text-black/45 dark:text-white/45" />
                                     </div>
-                                    <h3 className="text-sm font-semibold text-white/70 tracking-wide">
+                                    <h3 className="text-sm font-semibold text-black/70 dark:text-white/70 tracking-wide">
                                         {cat.name}
                                     </h3>
                                 </div>
@@ -65,7 +65,7 @@ export default function Skills() {
                                     {cat.skills.map((skill) => (
                                         <span
                                             key={skill}
-                                            className="rounded-full border border-white/8 bg-white/[0.03] px-3.5 py-1.5 text-xs text-white/60 hover:border-white/20 hover:text-white/85 hover:bg-white/[0.06] transition-all duration-200"
+                                            className="rounded-full border border-black/8 dark:border-white/8 bg-black/5 dark:bg-white/5 px-3.5 py-1.5 text-xs text-black/60 dark:text-white/60 hover:border-black/20 dark:hover:border-white/20 hover:text-black/85 dark:hover:text-white/85 hover:bg-black/10 dark:hover:bg-white/10 transition-all duration-200"
                                         >
                                             {skill}
                                         </span>

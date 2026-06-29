@@ -94,7 +94,6 @@ export default function Terminal() {
     const inputRef = useRef(null);
     const bodyRef = useRef(null);
 
-    // ===== BOOTING MESSAGES =====
     const bootMessages = [
         { type: "system", content: "  ═══════════════════════════════════════" },
         { type: "system", content: "     JEJEN's TERMINAL v2.0" },
@@ -108,10 +107,8 @@ export default function Terminal() {
         { type: "dim", content: "" },
     ];
 
-    // ===== BOOTING EFFECT =====
     useEffect(() => {
         if (!isOpen || bootComplete) return;
-
         let i = 0;
         const timer = setInterval(() => {
             if (i < bootMessages.length) {
@@ -123,7 +120,6 @@ export default function Terminal() {
                 setHistory([...bootMessages]);
             }
         }, 200);
-
         return () => clearInterval(timer);
     }, [isOpen, bootComplete]);
 
@@ -140,10 +136,8 @@ export default function Terminal() {
     const run = (cmd) => {
         const raw = cmd.trim();
         const lower = raw.toLowerCase();
-
         setCmdHistory((p) => [...p, raw]);
         setHistoryIdx(-1);
-
         const pushInput = { type: "input", content: `$ ${raw}` };
 
         if (lower === "clear") {
@@ -208,7 +202,6 @@ export default function Terminal() {
         }
     };
 
-    /* BUTTON — background putih, icon hitam */
     if (!isOpen) {
         return (
             <motion.button
@@ -216,7 +209,7 @@ export default function Terminal() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1 }}
                 onClick={() => setIsOpen(true)}
-                className="fixed bottom-6 right-6 z-50 w-12 h-12 border border-white/30 bg-white/90 backdrop-blur-xl hover:bg-white hover:border-white/50 transition-all duration-200 pixel-corners flex items-center justify-center group"
+                className="fixed bottom-6 right-6 z-50 w-12 h-12 border border-black/30 dark:border-white/30 bg-white/90 dark:bg-white/90 backdrop-blur-xl hover:bg-white/80 hover:border-black/50 dark:hover:border-white/50 transition-all duration-200 pixel-corners flex items-center justify-center group"
                 aria-label="Open Terminal"
             >
                 <TerminalIcon
@@ -234,7 +227,7 @@ export default function Terminal() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 16 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
-                className="fixed bottom-0 right-0 z-50 w-full max-w-[560px] md:bottom-6 md:right-6 border border-white/10 shadow-2xl pixel-corners"
+                className="fixed bottom-0 right-0 z-50 w-full max-w-[560px] md:bottom-6 md:right-6 border border-black/10 dark:border-white/10 shadow-2xl pixel-corners"
                 style={{
                     background: "rgba(232, 232, 232, 0.6)",
                     backdropFilter: "blur(24px)",
@@ -242,27 +235,27 @@ export default function Terminal() {
                 }}
             >
                 {/* TITLEBAR */}
-                <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/20 bg-white/10">
+                <div className="flex items-center justify-between px-4 py-2.5 border-b border-black/20 dark:border-white/20 bg-black/10 dark:bg-white/10">
                     <div className="flex items-center gap-2">
-                        <TerminalIcon size={12} className="text-black" />
-                        <span className="font-mono text-[10px] tracking-[0.3em] text-black font-semibold">
+                        <TerminalIcon size={12} className="text-black dark:text-white" />
+                        <span className="font-mono text-[10px] tracking-[0.3em] text-black dark:text-white font-semibold">
                             TERMINAL
                         </span>
                     </div>
                     <div className="flex items-center gap-1.5">
                         <button
                             onClick={() => setIsOpen(false)}
-                            className="w-5 h-5 rounded-full bg-black/10 hover:bg-black/20 flex items-center justify-center transition"
+                            className="w-5 h-5 rounded-full bg-black/10 hover:bg-black/20 dark:bg-white/10 dark:hover:bg-white/20 flex items-center justify-center transition"
                             title="Minimise"
                         >
-                            <Minus size={9} className="text-black" />
+                            <Minus size={9} className="text-black dark:text-white" />
                         </button>
                         <button
                             onClick={() => { setHistory([]); setBootComplete(false); setBootLines([]); setIsOpen(false); }}
-                            className="w-5 h-5 rounded-full bg-black/10 hover:bg-red-500/50 flex items-center justify-center transition"
+                            className="w-5 h-5 rounded-full bg-black/10 hover:bg-red-500/50 dark:bg-white/10 dark:hover:bg-red-500/50 flex items-center justify-center transition"
                             title="Close"
                         >
-                            <X size={9} className="text-black" />
+                            <X size={9} className="text-black dark:text-white" />
                         </button>
                     </div>
                 </div>
@@ -292,7 +285,7 @@ export default function Terminal() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.1 }}
                                 className={`
-                                    ${item.type === "system" ? "text-black/60" : ""}
+                                    ${item.type === "system" ? "text-black/60 dark:text-white/60" : ""}
                                     ${item.type === "dim" ? "h-2" : ""}
                                 `}
                             >
@@ -301,16 +294,16 @@ export default function Terminal() {
                         );
                     })}
 
-                    {/* HISTORY (setelah boot selesai) */}
+                    {/* HISTORY */}
                     {bootComplete && history.map((item, i) => {
                         if (!item) return null;
                         return (
                             <div
                                 key={i}
                                 className={`
-                                    ${item.type === "input" ? "text-black font-medium" : ""}
-                                    ${item.type === "output" ? "text-black/80" : ""}
-                                    ${item.type === "system" ? "text-black/60" : ""}
+                                    ${item.type === "input" ? "text-black dark:text-white font-medium" : ""}
+                                    ${item.type === "output" ? "text-black/80 dark:text-white/80" : ""}
+                                    ${item.type === "system" ? "text-black/60 dark:text-white/60" : ""}
                                     ${item.type === "error" ? "text-red-600 font-medium" : ""}
                                     ${item.type === "dim" ? "h-2" : ""}
                                 `}
@@ -320,32 +313,32 @@ export default function Terminal() {
                         );
                     })}
 
-                    {/* INPUT LINE — hanya muncul setelah boot selesai */}
+                    {/* INPUT LINE */}
                     {bootComplete && (
-                        <div className="flex items-center mt-1 text-black">
-                            <span className="mr-1 text-black/50 font-bold">$</span>
+                        <div className="flex items-center mt-1 text-black dark:text-white">
+                            <span className="mr-1 text-black/50 dark:text-white/50 font-bold">$</span>
                             <input
                                 ref={inputRef}
                                 type="text"
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
                                 onKeyDown={onKey}
-                                className="flex-1 bg-transparent outline-none text-black font-medium"
+                                className="flex-1 bg-transparent outline-none text-black dark:text-white font-medium"
                                 style={{ fontFamily: "'JetBrains Mono', 'Courier New', monospace", fontSize: "12px" }}
                                 spellCheck={false}
                                 autoComplete="off"
                             />
-                            <span className="w-1.5 h-3.5 bg-black animate-pulse ml-0.5" />
+                            <span className="w-1.5 h-3.5 bg-black dark:bg-white animate-pulse ml-0.5" />
                         </div>
                     )}
                 </div>
 
                 {/* STATUS BAR */}
-                <div className="flex items-center justify-between border-t border-white/20 bg-white/5 px-4 py-1.5">
-                    <span className="font-mono text-[9px] tracking-[0.25em] text-black/50 font-semibold">
+                <div className="flex items-center justify-between border-t border-black/20 dark:border-white/20 bg-black/5 dark:bg-white/5 px-4 py-1.5">
+                    <span className="font-mono text-[9px] tracking-[0.25em] text-black/50 dark:text-white/50 font-semibold">
                         {bootComplete ? "[ READY ]" : "[ BOOTING ]"}
                     </span>
-                    <span className="font-mono text-[9px] text-black/50">
+                    <span className="font-mono text-[9px] text-black/50 dark:text-white/50">
                         {new Date().toLocaleTimeString()}
                     </span>
                 </div>

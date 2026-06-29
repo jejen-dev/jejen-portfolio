@@ -11,7 +11,7 @@ const fields = [
 
 export default function ContactForm() {
     const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
-    const [status, setStatus] = useState("idle"); // idle | loading | success | error
+    const [status, setStatus] = useState("idle");
 
     const handleChange = (e) => {
         setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -53,16 +53,16 @@ export default function ContactForm() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             onSubmit={handleSubmit}
-            className="glass-card rounded-3xl p-8 border border-white/5"
+            className="glass-card rounded-3xl p-8 border border-black/5 dark:border-white/5 transition-colors duration-200 hover:border-black/15 dark:hover:border-white/15"
         >
             {/* SUCCESS */}
             {status === "success" && (
                 <motion.div
                     initial={{ opacity: 0, y: -8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mb-6 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-4 text-sm text-white/80"
+                    className="mb-6 flex items-center gap-3 rounded-2xl border border-green-500/20 bg-green-500/10 dark:bg-green-500/20 px-5 py-4 text-sm text-green-700 dark:text-green-300"
                 >
-                    <CheckCircle size={16} className="text-emerald-400 flex-shrink-0" />
+                    <CheckCircle size={16} className="text-green-500 flex-shrink-0" />
                     Message sent! I'll get back to you soon.
                 </motion.div>
             )}
@@ -72,9 +72,9 @@ export default function ContactForm() {
                 <motion.div
                     initial={{ opacity: 0, y: -8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mb-6 flex items-center gap-3 rounded-2xl border border-red-500/20 bg-red-500/[0.06] px-5 py-4 text-sm text-red-400"
+                    className="mb-6 flex items-center gap-3 rounded-2xl border border-red-500/20 bg-red-500/10 dark:bg-red-500/20 px-5 py-4 text-sm text-red-700 dark:text-red-300"
                 >
-                    <AlertCircle size={16} className="flex-shrink-0" />
+                    <AlertCircle size={16} className="text-red-500 flex-shrink-0" />
                     Failed to send. Try again or email directly.
                 </motion.div>
             )}
@@ -83,7 +83,7 @@ export default function ContactForm() {
             <div className="grid gap-4 md:grid-cols-2">
                 {fields.map((field) => (
                     <div key={field.name} className={field.name === "subject" ? "md:col-span-2" : ""}>
-                        <label className="mb-1.5 block font-mono text-[10px] tracking-[0.2em] text-white/30">
+                        <label className="mb-1.5 block font-mono text-[10px] tracking-[0.2em] text-black/30 dark:text-white/30">
                             {field.label.toUpperCase()}{field.required && " *"}
                         </label>
                         <input
@@ -93,7 +93,7 @@ export default function ContactForm() {
                             onChange={handleChange}
                             placeholder={field.placeholder}
                             required={field.required}
-                            className="w-full rounded-xl border border-white/8 bg-white/[0.03] px-4 py-3 text-sm text-white/90 placeholder-white/18 transition focus:border-white/25 focus:bg-white/[0.05] focus:outline-none"
+                            className="w-full rounded-xl border border-black/8 dark:border-white/8 bg-black/5 dark:bg-white/5 px-4 py-3 text-sm text-black/90 dark:text-white/90 placeholder-black/20 dark:placeholder-white/20 transition focus:border-black/25 dark:focus:border-white/25 focus:bg-black/10 dark:focus:bg-white/10 focus:outline-none"
                         />
                     </div>
                 ))}
@@ -101,7 +101,7 @@ export default function ContactForm() {
 
             {/* MESSAGE */}
             <div className="mt-4">
-                <label className="mb-1.5 block font-mono text-[10px] tracking-[0.2em] text-white/30">
+                <label className="mb-1.5 block font-mono text-[10px] tracking-[0.2em] text-black/30 dark:text-white/30">
                     MESSAGE *
                 </label>
                 <textarea
@@ -111,7 +111,7 @@ export default function ContactForm() {
                     rows={5}
                     placeholder="What's on your mind?"
                     required
-                    className="w-full rounded-xl border border-white/8 bg-white/[0.03] px-4 py-3 text-sm text-white/90 placeholder-white/18 transition focus:border-white/25 focus:bg-white/[0.05] focus:outline-none resize-none"
+                    className="w-full rounded-xl border border-black/8 dark:border-white/8 bg-black/5 dark:bg-white/5 px-4 py-3 text-sm text-black/90 dark:text-white/90 placeholder-black/20 dark:placeholder-white/20 transition focus:border-black/25 dark:focus:border-white/25 focus:bg-black/10 dark:focus:bg-white/10 focus:outline-none resize-none"
                 />
             </div>
 
