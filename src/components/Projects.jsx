@@ -32,7 +32,7 @@ const projects = [
         demo: "https://weather-g9xqsp70k-jejenprofile-2104s-projects.vercel.app/",
         github: "https://github.com/jejen-dev/weather-app",
         tech: ["React", "OpenWeather API", "Serverless"],
-        screenshot: null,
+        screenshot: "/weather-app.jpg",
         year: "2025",
     },
 ];
