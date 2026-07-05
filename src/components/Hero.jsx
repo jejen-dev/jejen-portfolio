@@ -153,7 +153,7 @@ export default function Hero() {
                         <motion.a
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.97 }}
-                            href="/resume-jejen.pdf"
+                            href="/Resume.pdf"
                             className="inline-flex items-center gap-2 rounded-full border border-black/20 dark:border-white/20 bg-black/5 dark:bg-white/5 px-6 py-3.5 text-sm text-black/80 dark:text-white/80 transition-all hover:bg-black/10 dark:hover:bg-white/10 hover:text-black dark:hover:text-white"
                         >
                             {t.hero.resume} <Download size={15} />
