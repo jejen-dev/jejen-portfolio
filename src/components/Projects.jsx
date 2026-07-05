@@ -29,7 +29,7 @@ const projects = [
         title: "Weather App",
         description:
             "Real-time weather application powered by OpenWeatherMap API, with Vercel Serverless Functions for secure key handling.",
-        demo: "https://weather-g9xqsp70k-jejenprofile-2104s-projects.vercel.app/",
+        demo: "https://weather-app-two-delta-29.vercel.app/",
         github: "https://github.com/jejen-dev/weather-app",
         tech: ["React", "OpenWeather API", "Serverless"],
         screenshot: "/weather-app.jpg",
