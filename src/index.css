@@ -63,9 +63,6 @@ body {
 
 /* ============================================================
    ROOT VARIABLES — DEFAULT = LIGHT MODE
-   ============================================================
-   PERUBAHAN: Semua variabel digabung dalam satu blok :root.
-   Nilai-nilai ini adalah untuk tema terang (default).
    ============================================================ */
 
 :root {
@@ -94,9 +91,6 @@ body {
 
 /* ============================================================
    DARK MODE OVERRIDE
-   ============================================================
-   PERUBAHAN: Nilai-nilai di bawah ini akan menggantikan :root
-   ketika class "dark" ditambahkan ke elemen <html>.
    ============================================================ */
 
 html.dark {
@@ -147,6 +141,7 @@ body::before {
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--border);
     transition: background 0.3s ease, border-color 0.3s ease;
+    will-change: transform, backdrop-filter;
 }
 
 .glass-card:hover {
@@ -262,9 +257,6 @@ body::before {
 
 /* ============================================================
    SECTION DIVIDER
-   ============================================================
-   PERUBAHAN: Menggunakan variabel --text-muted agar
-   menyesuaikan dengan mode terang/gelap.
    ============================================================ */
 
 .section-divider {
@@ -307,5 +299,16 @@ body::before {
     .glass-card {
         background: #111 !important;
         border: 1px solid #333 !important;
+    }
+}
+
+/* ============================================================
+   OPTIMASI MOBILE — kurangi efek berat
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .glass-card {
+        backdrop-filter: blur(8px) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
     }
 }

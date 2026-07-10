@@ -61,6 +61,7 @@ export default function ProjectModal({ project, isOpen, onClose, labels }) {
                                     src={project.screenshot}
                                     alt={project.title}
                                     className="w-full h-full object-cover"
+                                    loading="lazy"
                                 />
                             ) : (
                                 <p className="text-xs text-black/30 dark:text-white/30 font-mono">{labels.screenshot}</p>

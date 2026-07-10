@@ -61,6 +61,7 @@ export default function Certificate() {
                                 src="/certificate-thumbnail.jpg"
                                 alt="Meta Front-End Developer Certificate"
                                 className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                                loading="lazy"
                             />
                             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                 <span className="text-xs text-white/80 font-mono tracking-wider border border-white/30 rounded-full px-4 py-2">
