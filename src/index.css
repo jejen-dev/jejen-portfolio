@@ -4,21 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   GLOBAL RESET & BASE
+   ============================================================ */
+
 html {
     scroll-behavior: smooth;
-}
-
-:root {
-    --primary: #FFFFFF;
-    --primary-dim: #D4D4D4;
-    --primary-muted: #A3A3A3;
-    --bg: #060606;
-    --bg-surface: #0d0d0d;
-    --card: rgba(255, 255, 255, 0.035);
-    --card-hover: rgba(255, 255, 255, 0.065);
-    --border: rgba(255, 255, 255, 0.07);
-    --border-hover: rgba(255, 255, 255, 0.18);
-    --glow: rgba(255, 255, 255, 0.06);
 }
 
 * {
@@ -29,10 +20,15 @@ body {
     margin: 0;
     overflow-x: hidden;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--bg);
-    color: #FFFFFF;
+    background: var(--bg-body);
+    color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
+    transition: background 0.3s ease, color 0.3s ease;
 }
+
+/* ============================================================
+   SELECTION & SCROLLBAR
+   ============================================================ */
 
 ::selection {
     background: rgba(255, 255, 255, 0.9);
@@ -65,6 +61,71 @@ body {
     border-radius: 0;
 }
 
+/* ============================================================
+   ROOT VARIABLES — DEFAULT = LIGHT MODE
+   ============================================================
+   PERUBAHAN: Semua variabel digabung dalam satu blok :root.
+   Nilai-nilai ini adalah untuk tema terang (default).
+   ============================================================ */
+
+:root {
+    /* ---- Variabel untuk komponen tertentu (tidak berubah mode) ---- */
+    --primary: #FFFFFF;
+    --primary-dim: #D4D4D4;
+    --primary-muted: #A3A3A3;
+    --glow: rgba(255, 255, 255, 0.06);
+
+    /* ---- Variabel untuk mode terang (default) ---- */
+    --bg-body: #f4f4f4;
+    --bg-card: rgba(0, 0, 0, 0.04);
+    --border-card: rgba(0, 0, 0, 0.08);
+    --text-primary: #0a0a0a;
+    --text-secondary: rgba(0, 0, 0, 0.6);
+    --text-muted: rgba(0, 0, 0, 0.3);
+
+    /* ---- Variabel legacy (digunakan oleh .glass-card, dll.) ---- */
+    --bg: #f4f4f4;
+    --bg-surface: #f0f0f0;
+    --card: rgba(0, 0, 0, 0.04);
+    --card-hover: rgba(0, 0, 0, 0.08);
+    --border: rgba(0, 0, 0, 0.08);
+    --border-hover: rgba(0, 0, 0, 0.18);
+}
+
+/* ============================================================
+   DARK MODE OVERRIDE
+   ============================================================
+   PERUBAHAN: Nilai-nilai di bawah ini akan menggantikan :root
+   ketika class "dark" ditambahkan ke elemen <html>.
+   ============================================================ */
+
+html.dark {
+    /* ---- Variabel mode gelap ---- */
+    --bg-body: #060606;
+    --bg-card: rgba(255, 255, 255, 0.035);
+    --border-card: rgba(255, 255, 255, 0.07);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.55);
+    --text-muted: rgba(255, 255, 255, 0.25);
+
+    /* ---- Variabel legacy untuk mode gelap ---- */
+    --bg: #060606;
+    --bg-surface: #0d0d0d;
+    --card: rgba(255, 255, 255, 0.035);
+    --card-hover: rgba(255, 255, 255, 0.065);
+    --border: rgba(255, 255, 255, 0.07);
+    --border-hover: rgba(255, 255, 255, 0.18);
+}
+
+/* ============================================================
+   PERUBAHAN: html:not(.dark) DIHAPUS karena :root sudah
+   mencakup tema terang sebagai default.
+   ============================================================ */
+
+/* ============================================================
+   AMBIENT BACKGROUND EFFECTS
+   ============================================================ */
+
 body::before {
     content: "";
     position: fixed;
@@ -76,11 +137,16 @@ body::before {
     z-index: -1;
 }
 
+/* ============================================================
+   GLASS CARD
+   ============================================================ */
+
 .glass-card {
     background: var(--card);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--border);
+    transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .glass-card:hover {
@@ -88,11 +154,16 @@ body::before {
     border-color: var(--border-hover);
 }
 
+/* ============================================================
+   TYPOGRAPHY & UTILITY
+   ============================================================ */
+
 .section-title {
     font-size: clamp(2rem, 5vw, 3.2rem);
     font-weight: 800;
     letter-spacing: -0.04em;
     line-height: 1;
+    color: var(--text-primary);
 }
 
 .gradient-text {
@@ -111,6 +182,10 @@ body::before {
     opacity: 0.4;
     z-index: 0;
 }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
 
 .btn-primary {
     background: #FFFFFF;
@@ -144,11 +219,15 @@ body::before {
     transform: translateY(-1px);
 }
 
+/* ============================================================
+   TYPING CURSOR ANIMATION
+   ============================================================ */
+
 .typing-cursor {
     display: inline-block;
     width: 2px;
     height: 1em;
-    background: white;
+    background: var(--text-primary);
     margin-left: 2px;
     vertical-align: middle;
     animation: blink 0.9s step-end infinite;
@@ -166,6 +245,10 @@ body::before {
     }
 }
 
+/* ============================================================
+   PIXEL CORNERS & GLOW
+   ============================================================ */
+
 .pixel-corners {
     clip-path: polygon(0 4px, 4px 4px, 4px 0,
             calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
@@ -177,18 +260,33 @@ body::before {
     box-shadow: 0 0 80px rgba(255, 255, 255, 0.05);
 }
 
+/* ============================================================
+   SECTION DIVIDER
+   ============================================================
+   PERUBAHAN: Menggunakan variabel --text-muted agar
+   menyesuaikan dengan mode terang/gelap.
+   ============================================================ */
+
 .section-divider {
     width: 40px;
     height: 1px;
-    background: rgba(255, 255, 255, 0.15);
+    background: var(--text-muted);
     margin-top: 16px;
     margin-bottom: 48px;
 }
+
+/* ============================================================
+   FOCUS VISIBLE
+   ============================================================ */
 
 *:focus-visible {
     outline: 2px solid rgba(255, 255, 255, 0.5);
     outline-offset: 2px;
 }
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -201,52 +299,13 @@ body::before {
     }
 }
 
+/* ============================================================
+   PRINT STYLES
+   ============================================================ */
+
 @media print {
     .glass-card {
         background: #111 !important;
         border: 1px solid #333 !important;
     }
-}
-
-/* ===== LIGHT/DARK MODE VARIABLES ===== */
-:root {
-    --bg-body: #060606;
-    --bg-card: rgba(255, 255, 255, 0.035);
-    --border-card: rgba(255, 255, 255, 0.07);
-    --text-primary: #ffffff;
-    --text-secondary: rgba(255, 255, 255, 0.55);
-    --text-muted: rgba(255, 255, 255, 0.25);
-}
-
-html.dark {
-    --bg-body: #060606;
-    --bg-card: rgba(255, 255, 255, 0.035);
-    --border-card: rgba(255, 255, 255, 0.07);
-    --text-primary: #ffffff;
-    --text-secondary: rgba(255, 255, 255, 0.55);
-    --text-muted: rgba(255, 255, 255, 0.25);
-}
-
-html:not(.dark) {
-    --bg-body: #f4f4f4;
-    --bg-card: rgba(0, 0, 0, 0.04);
-    --border-card: rgba(0, 0, 0, 0.08);
-    --text-primary: #0a0a0a;
-    --text-secondary: rgba(0, 0, 0, 0.6);
-    --text-muted: rgba(0, 0, 0, 0.3);
-}
-
-body {
-    background: var(--bg-body);
-    transition: background 0.3s ease, color 0.3s ease;
-    color: var(--text-primary);
-}
-
-.glass-card {
-    background: var(--bg-card);
-    border-color: var(--border-card);
-}
-
-.section-title {
-    color: var(--text-primary);
 }

@@ -1,48 +1,48 @@
 import { motion } from "framer-motion";
-import { GraduationCap, Briefcase, Code, Rocket, Truck, Coffee, Wrench } from "lucide-react";
+import { GraduationCap, Code, Rocket, Truck, Coffee, Wrench } from "lucide-react";
 import { useLanguage } from "../i18n";
 
 const journey = [
     {
-        year: "2024",
+        year: "2023",
         title: "Mechanic",
         company: "Bengkel Mitra Suzuki",
-        description: "Conducted quality inspections during production to ensure products met standards. Performed routine maintenance on machinery including lubrication, cleaning, and component checks. Compiled daily, weekly, and monthly reports on production, quality, and issues.",
+        description: "", //diambil dari i18n.jsx
         icon: Wrench,
     },
     {
         year: "2024",
         title: "SMK Light Vehicle Engineering",
         company: null,
-        description: "Graduated with a focus in automotive engineering — built discipline, precision, and problem-solving skills that still shape how I write code.",
+        description: "", //diambil dari i18n.jsx
         icon: GraduationCap,
     },
     {
         year: "2025",
         title: "Shipping Staff",
         company: "Indonesia Kesad'tria Perkasa",
-        description: "Maintained strong client relationships and managed expectations. Ensured unit completeness and quality before shipment, explained usage procedures to clients, and guaranteed on-time delivery. Also handled return inspections and enforced penalty procedures for damaged units.",
+        description: "", //diambil dari i18n.jsx
         icon: Truck,
     },
     {
         year: "2026",
         title: "Waiter",
         company: "JONKIRA",
-        description: "Took accurate orders, explained daily specials, and delivered food and beverages efficiently. Maintained cleanliness by clearing tables and resetting them for the next guests.",
+        description: "", //diambil dari i18n.jsx
         icon: Coffee,
     },
     {
         year: "2025 — 2026",
         title: "Front-End Developer (Self-Taught)",
         company: null,
-        description: "Self-taught HTML, CSS, JavaScript, and React from scratch. Started building small projects, reading documentation obsessively, and never looking back.",
+        description: "", //diambil dari i18n.jsx
         icon: Code,
     },
     {
         year: "2026",
         title: "Building Production-Ready React Projects",
         company: null,
-        description: "Created real-world applications including Jonkira (restaurant landing page), Task Manager (Kanban), and Weather App (real-time API integration).",
+        description: "", //diambil dari i18n.jsx
         icon: Rocket,
     },
 ];
