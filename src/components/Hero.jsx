@@ -10,9 +10,9 @@ export default function Hero() {
     const [isDeleting, setIsDeleting] = useState(false);
     const typingTexts = t.hero.typing;
     const stats = [
-        { value: "3+", label: t.hero.stats[0] },
-        { value: "React", label: t.hero.stats[1] },
-        { value: "UI", label: t.hero.stats[2] },
+        { value: "UI → Deploy", label: t.hero.stats[0] },
+        { value: "API", label: t.hero.stats[1] },
+        { value: "AI", label: t.hero.stats[2] },
     ];
 
     useEffect(() => {
@@ -77,6 +77,9 @@ export default function Hero() {
                         </span>
                         <span className="rounded-full border border-black/8 dark:border-white/8 px-3 py-1.5 text-xs text-black/45 dark:text-white/45">
                             React
+                        </span>
+                        <span className="rounded-full border border-black/8 dark:border-white/8 px-3 py-1.5 text-xs text-black/45 dark:text-white/45">
+                            Next.js
                         </span>
                         <span className="rounded-full border border-black/8 dark:border-white/8 px-3 py-1.5 text-xs text-black/45 dark:text-white/45">
                             Tailwind CSS

@@ -7,8 +7,8 @@ const contacts = [
     { title: "GitHub", icon: Github, href: "https://github.com/jejen-dev" },
     { title: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/in/jejen-dev/" },
     { title: "Email", icon: Mail, href: "mailto:jejen.profile@gmail.com" },
-    { title: "Telegram", icon: Send, href: "https://t.me/jennndv" },
-    { title: "Instagram", icon: Instagram, href: "https://www.instagram.com/jaendv" },
+    { title: "Telegram", icon: Send, href: "https://t.me/jennndv", hidden: true },
+    { title: "Instagram", icon: Instagram, href: "https://www.instagram.com/jaendv", hidden: true },
 ];
 
 export default function Contact() {
@@ -36,7 +36,7 @@ export default function Contact() {
 
                 {/* SOCIAL LINKS */}
                 <div className="mt-8 flex flex-wrap justify-center gap-3">
-                    {contacts.map((contact, i) => {
+                    {contacts.filter((contact) => !contact.hidden).map((contact, i) => {
                         const Icon = contact.icon;
                         return (
                             <motion.a

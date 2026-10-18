@@ -29,10 +29,10 @@ function App() {
             <main>
                 <Hero />
                 <About />
-                <Experience />
                 <Skills />
                 <Projects />
                 <Certificate />
+                <Experience />
                 <Contact />
             </main>
 

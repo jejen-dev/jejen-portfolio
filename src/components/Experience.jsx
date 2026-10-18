@@ -33,14 +33,14 @@ const journey = [
     },
     {
         year: "2025 — 2026",
-        title: "Front-End Developer (Self-Taught)",
+        title: "Learning Software Development",
         company: null,
         description: "", //diambil dari i18n.jsx
         icon: Code,
     },
     {
         year: "2026",
-        title: "Building Production-Ready React Projects",
+        title: "Building Web Applications",
         company: null,
         description: "", //diambil dari i18n.jsx
         icon: Rocket,
@@ -53,7 +53,7 @@ export default function Experience() {
         ...item,
         title: t.experience.items[index][0],
         description: t.experience.items[index][1],
-    }));
+    })).reverse();
 
     return (
         <section id="experience" className="mx-auto max-w-6xl px-6 py-28">

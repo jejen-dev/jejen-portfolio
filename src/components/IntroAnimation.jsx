@@ -1,9 +1,11 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useLanguage } from "../i18n";
 
 const CHARS = "JEJEN".split("");
 
 export default function IntroAnimation({ onComplete }) {
+    const { t } = useLanguage();
     const [phase, setPhase] = useState("enter"); // enter → hold → exit
     const [visible, setVisible] = useState(true);
 
@@ -72,7 +74,7 @@ export default function IntroAnimation({ onComplete }) {
                         transition={{ duration: 0.4 }}
                         className="mt-4 font-mono text-xs tracking-[0.35em] text-black/25 dark:text-white/25"
                     >
-                        FRONT-END DEVELOPER
+                        {t.hero.role.toUpperCase()}
                     </motion.p>
 
                     {/* AMBIENT GLOW */}
