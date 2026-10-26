@@ -1,8 +1,8 @@
-# Jejen — Front-End Developer Portfolio
+# Jejen — Software Developer Portfolio
 
-This is the source code repository for my personal portfolio website. The project showcases my journey, skills, and projects as a Front-End Engineer based in Indonesia.
+This repository contains my portfolio and selected web application projects. It highlights how I build interfaces, manage client-side state, integrate APIs, and ship web experiences.
 
-**Live Site:** [jejen.vercel.app](https://jejen-portfolio.vercel.app/)
+**Live Site:** [jejen-portfolio.vercel.app](https://jejen-portfolio.vercel.app/)
 
 ---
 
@@ -12,7 +12,7 @@ This is the source code repository for my personal portfolio website. The projec
 - **Fully Responsive** — Optimized for all screen sizes from mobile to desktop.
 - **Smooth Animations** — Built with Framer Motion for subtle and elegant interactions.
 - **Dark / Light Mode** — Toggle between themes with persistent localStorage support.
-- **Personal Branding** — Designed to reflect my identity and style as a developer.
+- **AI-Assisted Workflow** — Use AI to explore options, then verify changes against documentation, a running app, and edge cases.
 
 ---
 
@@ -20,7 +20,7 @@ This is the source code repository for my personal portfolio website. The projec
 
 | Category | Technologies |
 |----------|--------------|
-| **Core** | React 19, Vite |
+| **Core** | React 18, JavaScript, Vite |
 | **Styling** | Tailwind CSS |
 | **Animation** | Framer Motion |
 | **Icons** | Lucide React |

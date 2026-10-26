@@ -1,27 +1,27 @@
 import { motion } from "framer-motion";
-import { Layout, GitBranch, Brush, Terminal } from "lucide-react";
+import { Code2, Layers3, Database, GitBranch } from "lucide-react";
 import { useLanguage } from "../i18n";
 
 const skillCategories = [
     {
-        name: "Frontend",
-        icon: Layout,
-        skills: ["React", "JavaScript", "HTML5", "CSS3", "Tailwind CSS"],
+        name: "Programming Languages",
+        icon: Code2,
+        skills: ["JavaScript", "TypeScript", "SQL"],
     },
     {
-        name: "Tools & Version Control",
+        name: "Frameworks & Development",
+        icon: Layers3,
+        skills: ["React.js", "Next.js", "Node.js", "HTML5", "CSS3", "Tailwind CSS", "REST API"],
+    },
+    {
+        name: "Database, AI & Testing",
+        icon: Database,
+        skills: ["PostgreSQL", "Prisma", "LLM API", "Prompt Engineering", "Vitest", "Pytest", "Playwright"],
+    },
+    {
+        name: "Tools & DevOps",
         icon: GitBranch,
-        skills: ["Git", "GitHub", "Vite", "npm", "ESLint"],
-    },
-    {
-        name: "Design & Motion",
-        icon: Brush,
-        skills: ["Responsive UI", "Framer Motion", "Figma", "Glassmorphism", "Dark Mode"],
-    },
-    {
-        name: "Deployment & APIs",
-        icon: Terminal,
-        skills: ["Vercel", "Netlify", "API Integration", "Serverless Functions", "EmailJS"],
+        skills: ["Git", "GitHub", "Docker", "GitHub Actions", "Vercel"],
     },
 ];
 

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "../i18n";
 
-const highlights = ["React", "Tailwind CSS", "Responsive Design", "Modern UI", "Framer Motion", "Vite"];
+const highlights = ["JavaScript", "TypeScript", "React.js", "Next.js", "Node.js", "PostgreSQL", "LLM API", "Playwright"];
 
 export default function About() {
     const { t } = useLanguage();

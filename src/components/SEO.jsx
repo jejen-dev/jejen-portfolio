@@ -1,9 +1,9 @@
 import { Helmet } from "react-helmet-async";
 
 export default function SEO({
-    title = "Jejen — Front-End Developer",
-    description = "Front-End Developer specializing in React and Tailwind CSS. Building responsive, modern, and user-friendly web applications.",
-    url = "https://jejen.dev",
+    title = "Jejen — Software Developer",
+    description = "Software developer building web applications with React, JavaScript, and API integrations.",
+    url = "https://jejen-portfolio.vercel.app/",
 }) {
     return (
         <Helmet>
