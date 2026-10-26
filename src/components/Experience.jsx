@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { GraduationCap, Code, Rocket, Truck, Coffee, Wrench } from "lucide-react";
+import { GraduationCap, Rocket, Truck, Coffee, Wrench } from "lucide-react";
 import { useLanguage } from "../i18n";
 
 const journey = [
@@ -33,13 +33,6 @@ const journey = [
     },
     {
         year: "2025 — 2026",
-        title: "Learning Software Development",
-        company: null,
-        description: "", //diambil dari i18n.jsx
-        icon: Code,
-    },
-    {
-        year: "2026",
         title: "Building Web Applications",
         company: null,
         description: "", //diambil dari i18n.jsx

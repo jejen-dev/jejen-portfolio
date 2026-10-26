@@ -6,6 +6,17 @@ import { useLanguage } from "../i18n";
 
 const projects = [
     {
+        title: "LogiTrack",
+        description:
+            "Full-stack logistics management app for shipments, status tracking, inventory with stock reservation, warehouses, fleet, and multi-role merchant teams.",
+        demo: "https://logitrack.nalarlabs.web.id",
+        github: "https://github.com/jejen-dev/logitrack",
+        tech: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "NextAuth"],
+        screenshot: "/logitrack.png",
+        year: "2026",
+        featured: true,
+    },
+    {
         title: "Jonkira",
         description:
             "A modern restaurant landing page with clean design, smooth animations, and mobile-first responsiveness.",
@@ -68,7 +79,7 @@ export default function Projects() {
                         transition={{ delay: index * 0.08, duration: 0.45 }}
                         whileHover={{ y: -6 }}
                         onClick={() => setSelected(project)}
-                        className="glass-card group relative flex flex-col rounded-2xl p-6 border border-black/5 dark:border-white/5 hover:border-black/15 dark:hover:border-white/15 transition-all duration-300 cursor-pointer overflow-hidden"
+                        className={`glass-card group relative flex flex-col rounded-2xl p-6 border border-black/5 dark:border-white/5 hover:border-black/15 dark:hover:border-white/15 transition-all duration-300 cursor-pointer overflow-hidden ${project.featured ? "lg:col-span-3" : ""}`}
                     >
                         {/* YEAR BADGE */}
                         <span className="absolute top-5 right-5 font-mono text-[10px] text-black/20 dark:text-white/20">
